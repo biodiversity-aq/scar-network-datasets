@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 session = requests.Session()
-session.headers.update({"User-Agent": "iobis/obis-network-datasets"})
+session.headers.update({"User-Agent": "ymgan/scar-network-datasets"})
 
 
 def get_paged_results(url, limit=100):
@@ -22,9 +22,9 @@ def get_paged_results(url, limit=100):
     return results
 
 
-def get_obis_network_datasets():
-    logger.info("Fetching OBIS network datasets")
-    datasets = get_paged_results("https://api.gbif.org/v1/network/2b7c7b4f-4d4f-40d3-94de-c28b6fa054a6/constituents")
+def get_scar_network_datasets():
+    logger.info("Fetching SCAR network datasets")
+    datasets = get_paged_results("https://api.gbif.org/v1/network/8534dd20-c368-4a1f-bdaf-e6b390710f89/constituents")
     return datasets
 
 

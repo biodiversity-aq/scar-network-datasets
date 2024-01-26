@@ -1,5 +1,5 @@
 import argparse
-from obisnd import ObisNetworkDatasets
+from scarnd import ScarNetworkDatasets
 import logging
 from dotenv import load_dotenv
 
@@ -16,5 +16,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     args = parser.parse_args()
 
-    ond = ObisNetworkDatasets()
-    ond.run(dry_run=False)
+    snd = ScarNetworkDatasets()
+    snd.run(dry_run=False)

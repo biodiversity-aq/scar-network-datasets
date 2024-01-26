@@ -1,34 +1,18 @@
 import logging
-from obisnd.gbif import get_obis_network_datasets, create_gbif_url
-from obisnd.obis import get_obis_datasets, get_obis_blacklist
-from obisnd.github import get_github_issues, create_github_issue
+from scarnd.gbif import get_scar_network_datasets, create_gbif_url
+from scarnd.github import get_github_issues, create_github_issue
 from termcolor import colored
 
 
 logger = logging.getLogger(__name__)
 
 
-class ObisNetworkDatasets:
+class ScarNetworkDatasets:
 
     def __init__(self):
 
-        obis_datasets = get_obis_datasets()
-
         self.github_issues = get_github_issues()
-        self.gbif_datasets = get_obis_network_datasets()
-        self.obis_datasets = [dataset["url"].replace("https://", "http://") for dataset in obis_datasets if dataset["url"] is not None]
-        self.obis_blacklist = [dataset["url"].replace("https://", "http://") for dataset in get_obis_blacklist() if dataset["url"] is not None]
-        self.obis_titles = [dataset["title"] for dataset in obis_datasets if dataset["title"] is not None]
-
-    def obis_has_dataset(self, identifiers, title=None):
-        for identifier in identifiers:
-            if identifier.replace("https://", "http://") in self.obis_datasets:
-                return True
-            if identifier.replace("https://", "http://") in self.obis_blacklist:
-                return True
-            if title is not None and title in self.obis_titles:
-                return True
-        return False
+        self.gbif_datasets = get_scar_network_datasets()
 
     def normalize_identifier(self, identifier):
         identifier = identifier.replace("https://", "http://")
@@ -70,12 +54,9 @@ class ObisNetworkDatasets:
             if not self.dataset_has_dwc_endpoint(gbif_dataset):
                 logger.info(colored(f"No IPT URL found for {gbif_url}", "red"))
             else:
-                if not self.obis_has_dataset(identifiers):
-                    logger.info(colored(f"Dataset not in OBIS: {gbif_url}", "blue"))
-                    if not self.dataset_is_orphaned(gbif_dataset):
-                        logger.info(colored(f"Dataset is not orphaned: {gbif_url}", "blue"))
-                        if not self.github_has_issue(identifiers):
-                            logger.info(colored(f"Dataset not in GitHub: {gbif_url}", "green"))
-
-                            if not dry_run:
-                                create_github_issue(gbif_dataset, identifiers)
+                if not self.dataset_is_orphaned(gbif_dataset):
+                    logger.info(colored(f"Dataset is not orphaned: {gbif_url}", "blue"))
+                    if not self.github_has_issue(identifiers):
+                        logger.info(colored(f"Dataset not in GitHub: {gbif_url}", "green"))
+                        if not dry_run:
+                            create_github_issue(gbif_dataset, identifiers)

@@ -3,7 +3,7 @@ import re
 import os
 import logging
 import yaml
-from obisnd.gbif import create_gbif_url
+from scarnd.gbif import create_gbif_url
 import json
 from dotenv import load_dotenv
 import sys
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 session = requests.Session()
 session.headers.update({
-    "User-Agent": "iobis/obis-network-datasets",
+    "User-Agent": "ymgan/scar-network-datasets",
     "Accept": "application/vnd.github.v3+json"
 })
 
@@ -42,7 +42,7 @@ def get_github_issues():
     page = 1
     issues = []
     while True:
-        res = session.get(url=f"https://api.github.com/repos/iobis/obis-network-datasets/issues?state=all&labels=dataset&page={page}")
+        res = session.get(url=f"https://api.github.com/repos/ymgan/scar-network-datasets/issues?state=all&labels=dataset&page={page}")
         if res.status_code != 200:
             sys.exit(f"Error: GitHub API returned status {res.status_code}")
         issues_page = res.json()
@@ -60,6 +60,7 @@ def create_github_issue(gbif_dataset, identifiers):
     props = [
         {"title": gbif_dataset["title"]},
         {"GBIF": url},
+        {"type": gbif_dataset["type"]},
         {"created": gbif_dataset["created"]},
         {"URLs": identifiers}
     ]
@@ -68,6 +69,6 @@ def create_github_issue(gbif_dataset, identifiers):
         "body": yaml.dump(props),
         "labels": ["dataset"]
     }
-    res = session.post("https://api.github.com/repos/iobis/obis-network-datasets/issues", json.dumps(data))
+    res = session.post("https://api.github.com/repos/ymgan/scar-network-datasets/issues", json.dumps(data))
     logger.info(f"Status code: {res.status_code}")
     logger.info("Created GitHub issue")

@@ -4,7 +4,7 @@ This Python package creates issues for datasets added to the [SCAR network](http
 
 Since the release of IPT 2.5.2, publishers can select the networks their dataset belongs to in IPT. 
 
-Datasets that are added to the SCAR network appear here: https://www.gbif.org/network/2b7c7b4f-4d4f-40d3-94de-c28b6fa054a6 (note that while the dataset appears immediately the occurrence records reprocess so lag behind a little).
+Datasets that are added to the SCAR network appear here: https://www.gbif.org/network/8534dd20-c368-4a1f-bdaf-e6b390710f89 (note that while the dataset appears immediately the occurrence records reprocess so lag behind a little).
 
 
 ## Run
@@ -12,7 +12,7 @@ Datasets that are added to the SCAR network appear here: https://www.gbif.org/ne
 Create `.env` file with environment variables `GITHUB_USER` and `GITHUB_ACCESS_TOKEN`.
 
 ```
-python -m obisnd
+python -m scarnd
 ```
 
 ## Acknowledgement
