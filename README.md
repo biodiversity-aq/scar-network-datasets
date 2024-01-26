@@ -1,26 +1,11 @@
-# obis-network-datasets
+# SCAR-network-datasets
 
-This Python package creates issues for datasets linked to the OBIS network in the GBIF registry.
+This Python package creates issues for datasets added to the [SCAR network](https://www.gbif.org/network/8534dd20-c368-4a1f-bdaf-e6b390710f89) in the GBIF registry.
 
-Since the release of IPT 2.5.2, publishers can select the networks their dataset belongs to in IPT. GBIF and OBIS recommend that all marine publishers select OBIS where appropriate. 
+Since the release of IPT 2.5.2, publishers can select the networks their dataset belongs to in IPT. 
 
-Datasets that are added to the OBIS network appear here: https://www.gbif.org/network/2b7c7b4f-4d4f-40d3-94de-c28b6fa054a6 (note that while the dataset appears immediately the occurrence records reprocess so lag behind a little).
+Datasets that are added to the SCAR network appear here: https://www.gbif.org/network/2b7c7b4f-4d4f-40d3-94de-c28b6fa054a6 (note that while the dataset appears immediately the occurrence records reprocess so lag behind a little).
 
-The OBIS secretariat will list those marine datasets that are not yet in OBIS as issues to this GitHub repository and indicate which OBIS node(s) should endorse this dataset. Once endorsed, OBIS will harvest the dataset directly from the source IPT and list it on the OBIS node page.
-
-GitHub accounts per OBIS node used to assign datasets:
-- AntOBIS: @ymgan
-- IndOBIS: @johnny3125
-- Caribbean OBIS: @diodon
-- OBIS Japan: @hosonot
-- EurOBIS: @rubenpp7
-- OBIS Australia: @obisau 
-- OBIS Deepsea: @haniehsaeedi
-- AfrOBIS: @TRasehlomi
-- OBIS China: @ZhaocuiMeng
-- OBIS Canada: @cornthwaitem
-- OBIS UK: @dblear
-- Ocean Tracking Network: @jdpye
 
 ## Run
 
@@ -29,3 +14,7 @@ Create `.env` file with environment variables `GITHUB_USER` and `GITHUB_ACCESS_T
 ```
 python -m obisnd
 ```
+
+## Acknowledgement
+
+This repository is adapted from the [OBIS network datasets](https://github.com/iobis/obis-network-datasets) repository. We acknowledge the contribution of the original [contributors](https://github.com/iobis/obis-network-datasets/graphs/contributors) from the [OBIS network datasets](https://github.com/iobis/obis-network-datasets) repository.
