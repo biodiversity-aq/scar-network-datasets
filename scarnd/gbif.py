@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 session = requests.Session()
-session.headers.update({"User-Agent": "ymgan/scar-network-datasets"})
+session.headers.update({"User-Agent": "biodiversity-aq/scar-network-datasets"})
 
 
 def get_paged_results(url, limit=100):
